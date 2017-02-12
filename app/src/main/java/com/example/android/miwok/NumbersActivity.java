@@ -2,12 +2,12 @@ package com.example.android.miwok;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
-    String tag = "nubersActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,12 @@ public class NumbersActivity extends AppCompatActivity {
         arrayNombres.add("nine");
         arrayNombres.add("ten");
 
-        Log.v(tag,"the word in position 1 is: "+arrayNombres.get(0));
-        Log.v(tag,"the word in position 6 is: "+arrayNombres.get(5));
+        int index;
+
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this,R.layout.list_item,arrayNombres);
+
+        ListView listView = (ListView) findViewById(R.id.List);
+
+        listView.setAdapter(itemsAdapter);
     }
 }
