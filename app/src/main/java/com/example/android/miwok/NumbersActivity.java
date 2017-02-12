@@ -25,12 +25,9 @@ public class NumbersActivity extends AppCompatActivity {
         arrayNombres.add(new Word("nine","wo'e"));
         arrayNombres.add(new Word("ten","na'aacha"));
 
-        int index;
-
         WordAdapter itemsAdapter = new WordAdapter(this,arrayNombres);
 
         ListView listView = (ListView) findViewById(R.id.List);
-
         listView.setAdapter(itemsAdapter);
     }
 }
