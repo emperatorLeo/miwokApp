@@ -7,10 +7,17 @@ package com.example.android.miwok;
 public class Word {
     private String mMihokWord;
     private String mDefaultWord;
+    private int mImageResourceId;
 
-    Word (String mihokWord,String defaultWord){
+    public Word (String mihokWord,String defaultWord){
          mMihokWord = mihokWord;
          mDefaultWord =defaultWord;
+    }
+
+    public Word (String mihokWord,String defaultWord,int imageResource ){
+        mMihokWord = mihokWord;
+        mDefaultWord =defaultWord;
+        mImageResourceId = imageResource;
     }
 
     public String getMihokWord(){
@@ -19,5 +26,9 @@ public class Word {
 
     public String getDefaultWord(){
         return mDefaultWord;
+    }
+
+    public int getImageResourceId(){
+        return mImageResourceId;
     }
 }
