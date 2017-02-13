@@ -22,7 +22,7 @@ public class ColorsActivity extends AppCompatActivity {
         arrayColors.add(new Word("white","kelelli"));
         arrayColors.add(new Word("dusty yellow","ṭopiisә"));
         arrayColors.add(new Word("mustard yellow","chiwiiṭә"));
-        
+
         WordAdapter itemsAdapter = new WordAdapter(this,arrayColors);
 
         ListView listView = (ListView) findViewById(R.id.ListColors);
