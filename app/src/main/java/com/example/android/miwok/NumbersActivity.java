@@ -14,16 +14,16 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_numbers);
 
       ArrayList<Word> arrayNombres= new ArrayList<Word>();
-        arrayNombres.add(new Word("one","lutti",R.drawable.number_one));
-        arrayNombres.add(new Word("two","otiiko",R.drawable.number_two));
-        arrayNombres.add(new Word("three","tolookosu",R.drawable.number_three));
-        arrayNombres.add(new Word("four","oyyisa",R.drawable.number_four));
-        arrayNombres.add(new Word("five","massokka",R.drawable.number_five));
-        arrayNombres.add(new Word("six","temmokka",R.drawable.number_six));
-        arrayNombres.add(new Word("seven","kenekaku",R.drawable.number_seven));
-        arrayNombres.add(new Word("eight","kawinta",R.drawable.number_eight));
-        arrayNombres.add(new Word("nine","wo'e",R.drawable.number_nine));
-        arrayNombres.add(new Word("ten","na'aacha",R.drawable.number_ten));
+        arrayNombres.add(new Word("lutti","one",R.drawable.number_one));
+        arrayNombres.add(new Word("otiiko","two",R.drawable.number_two));
+        arrayNombres.add(new Word("tolookosu","three",R.drawable.number_three));
+        arrayNombres.add(new Word("oyyisa","four",R.drawable.number_four));
+        arrayNombres.add(new Word("massokka","five",R.drawable.number_five));
+        arrayNombres.add(new Word("temmokka","six",R.drawable.number_six));
+        arrayNombres.add(new Word("kenekaku","seven",R.drawable.number_seven));
+        arrayNombres.add(new Word("kawinta","eight",R.drawable.number_eight));
+        arrayNombres.add(new Word("wo'e","nine",R.drawable.number_nine));
+        arrayNombres.add(new Word("na'aacha","ten",R.drawable.number_ten));
 
         WordAdapter itemsAdapter = new WordAdapter(this,arrayNombres);
 

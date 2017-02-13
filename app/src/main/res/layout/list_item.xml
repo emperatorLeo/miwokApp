@@ -5,25 +5,29 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:id="@+id/image_view"/>
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:background="#fff7da"
+        android:id="@+id/image_view"
+        />
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="88dp"
     android:padding="16dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/miwok_word_view"
-        tools:text="tutti"/>
+        tools:text="tutti"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/english_word_view"
-        tools:text="One"/>
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>
 </LinearLayout>

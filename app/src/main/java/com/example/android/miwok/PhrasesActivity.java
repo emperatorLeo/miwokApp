@@ -14,16 +14,16 @@ public class PhrasesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phrases);
 
         ArrayList<Word> arrayPhrases= new ArrayList<Word>();
-        arrayPhrases.add(new Word("Where are you going?","minto wuksus"));
-        arrayPhrases.add(new Word("What is your name?","tinnә oyaase'nә"));
-        arrayPhrases.add(new Word("My name is...","oyaaset..."));
-        arrayPhrases.add(new Word("How are you feeling?","michәksәs?"));
-        arrayPhrases.add(new Word("I’m feeling good.","kuchi achit"));
-        arrayPhrases.add(new Word("Are you coming?","әәnәs'aa?"));
-        arrayPhrases.add(new Word("Yes, I’m coming.","hәә’ әәnәm"));
-        arrayPhrases.add(new Word("I’m coming.","әәnәm"));
-        arrayPhrases.add(new Word("Let’s go","yoowutis"));
-        arrayPhrases.add(new Word("Come here.","әnni'nem"));
+        arrayPhrases.add(new Word("minto wuksus","Where are you going?"));
+        arrayPhrases.add(new Word("tinnә oyaase'nә","What is your name?"));
+        arrayPhrases.add(new Word("oyaaset...","My name is..."));
+        arrayPhrases.add(new Word("michәksәs?","How are you feeling?"));
+        arrayPhrases.add(new Word("kuchi achit","I’m feeling good."));
+        arrayPhrases.add(new Word("әәnәs'aa?","Are you coming?"));
+        arrayPhrases.add(new Word("hәә’ әәnәm","Yes, I’m coming."));
+        arrayPhrases.add(new Word("әәnәm","I’m coming."));
+        arrayPhrases.add(new Word("yoowutis","Let’s go"));
+        arrayPhrases.add(new Word("әnni'nem","Come here."));
 
         WordAdapter itemsAdapter = new WordAdapter(this,arrayPhrases);
 

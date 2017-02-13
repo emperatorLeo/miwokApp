@@ -7,7 +7,8 @@ package com.example.android.miwok;
 public class Word {
     private String mMihokWord;
     private String mDefaultWord;
-    private int mImageResourceId;
+    private static final int  NO_IMAGE_PROVIDED = -1;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
 
     public Word (String mihokWord,String defaultWord){
          mMihokWord = mihokWord;
@@ -30,5 +31,8 @@ public class Word {
 
     public int getImageResourceId(){
         return mImageResourceId;
+    }
+    public boolean hasImage(){
+       return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 }
