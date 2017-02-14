@@ -25,7 +25,7 @@ public class NumbersActivity extends AppCompatActivity {
         arrayNombres.add(new Word("wo'e","nine",R.drawable.number_nine));
         arrayNombres.add(new Word("na'aacha","ten",R.drawable.number_ten));
 
-        WordAdapter itemsAdapter = new WordAdapter(this,arrayNombres);
+        WordAdapter itemsAdapter = new WordAdapter(this,arrayNombres,R.color.category_numbers);
 
         ListView listView = (ListView) findViewById(R.id.List);
         listView.setAdapter(itemsAdapter);
