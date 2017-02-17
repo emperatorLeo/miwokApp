@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
        int colorResourceId;
+       MediaPlayer media;
 
     public WordAdapter(Activity context, ArrayList<Word> palabras,int coloron){
         super(context,0,palabras);
@@ -33,7 +35,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
         }
 
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
 
         TextView miHowkView = (TextView) listView.findViewById(R.id.miwok_word_view);
         miHowkView.setText(currentWord.getMihokWord());
@@ -51,6 +53,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
         View textContainer = listView.findViewById(R.id.textContainer);
         int color = ContextCompat.getColor(getContext(),colorResourceId);
         textContainer.setBackgroundColor(color);
+        listView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                media = MediaPlayer.create(getContext(),currentWord.getAudioResourceId());
+                media.start();
+            }
+        });
         return listView;
 
     }
