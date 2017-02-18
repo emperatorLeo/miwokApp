@@ -19,7 +19,8 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
        int colorResourceId;
-       MediaPlayer media;
+       private  MediaPlayer media;
+
 
     public WordAdapter(Activity context, ArrayList<Word> palabras,int coloron){
         super(context,0,palabras);
@@ -53,15 +54,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         View textContainer = listView.findViewById(R.id.textContainer);
         int color = ContextCompat.getColor(getContext(),colorResourceId);
         textContainer.setBackgroundColor(color);
-        listView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                media = MediaPlayer.create(getContext(),currentWord.getAudioResourceId());
-                media.start();
-            }
-        });
         return listView;
 
     }
+
+
+
 }
