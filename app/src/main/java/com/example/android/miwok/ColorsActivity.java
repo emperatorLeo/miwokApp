@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +9,37 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
     private MediaPlayer media;
     private ArrayList<Word> arrayColors;
+    private AudioManager audioManager;
+
+    AudioManager.OnAudioFocusChangeListener callback = new AudioManager.OnAudioFocusChangeListener(){
+
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK ){
+                media.pause();
+                media.seekTo(0);
+            }
+            else if(focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                Toast.makeText(ColorsActivity.this,"Focus Gained",Toast.LENGTH_LONG).show();
+                media.start();
+            }
+            else if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                Toast.makeText(ColorsActivity.this,"Focus Lost",Toast.LENGTH_LONG).show();
+                releaseMediaPlayer();
+            }
+
+
+        }
+    };
+
+
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener(){
         @Override
         public void onCompletion(MediaPlayer mp) {
@@ -23,6 +50,7 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         arrayColors= new ArrayList<Word>();
         arrayColors.add(new Word("wetetti","red",R.drawable.color_red,R.raw.color_red));
@@ -45,11 +73,18 @@ public class ColorsActivity extends AppCompatActivity {
                   public void onItemClick(AdapterView adapterView,View view,int position ,long l){
                 Word word = arrayColors.get(position);
                 releaseMediaPlayer();
-                media = MediaPlayer.create(ColorsActivity.this,word.getAudioResourceId());
-                media.start();
-                media.setOnCompletionListener(onCompletionListener);
+                int requesting = audioManager.requestAudioFocus(callback,
+                        AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if(requesting == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    media = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+                    media.start();
+                    media.setOnCompletionListener(onCompletionListener);
+                }
             }
         });
+
+
     }
     //this method is useful to know when the variable media is empty or not , to configure
     //and to use just the same object instead create a bran new object
@@ -67,6 +102,7 @@ public class ColorsActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             media = null;
+            audioManager.abandonAudioFocus(callback);
         }
         else{
             Log.e("mensaje", "releaseMediaPlayer: the variable is empty");
