@@ -115,4 +115,6 @@ public class ColorsActivity extends AppCompatActivity {
         Log.e("onStop method","it's stopped");
         releaseMediaPlayer();
     }
+
+
 }
