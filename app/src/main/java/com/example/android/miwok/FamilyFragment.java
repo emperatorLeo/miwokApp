@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,14 +29,14 @@ public class FamilyFragment extends Fragment {
         @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                media.pause();
-                media.seekTo(0);
+                Toast.makeText(getContext(),"trasient",Toast.LENGTH_LONG);
+              //  media.stop();
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-
+                Toast.makeText(getContext(),"focus gain",Toast.LENGTH_LONG);
                 media.start();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-
                 releaseMediaPlayer();
+                Toast.makeText(getContext(),"focus lost",Toast.LENGTH_LONG);
             }
 
 

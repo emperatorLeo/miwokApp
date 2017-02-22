@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,17 +26,15 @@ public class NumbersFragment extends Fragment {
 
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK ){
-                media.pause();
-                media.seekTo(0);
-            }
-            else if(focusChange == AudioManager.AUDIOFOCUS_GAIN){
-
+            if (focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                Toast.makeText(getContext(),"trasient",Toast.LENGTH_LONG);
+               media.stop();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                Toast.makeText(getContext(),"focus gain",Toast.LENGTH_LONG);
                 media.start();
-            }
-            else if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
-
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 releaseMediaPlayer();
+                Toast.makeText(getContext(),"focus lost",Toast.LENGTH_LONG);
             }
 
 
@@ -113,7 +112,7 @@ public class NumbersFragment extends Fragment {
             Log.e("mensaje", "releaseMediaPlayer: the variable is not empty");
             // Regardless of the current state of the media player, release its resources
             // because we no longer need it.
-            media.stop();
+           media.stop();
             media.release();
 
             // Set the media player back to null. For our code, we've decided that

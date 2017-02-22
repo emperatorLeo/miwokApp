@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,14 +28,14 @@ public class PhrasesFragment extends Fragment {
         @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                media.pause();
-                media.seekTo(0);
+                Toast.makeText(getContext(),"trasient",Toast.LENGTH_LONG);
+               // media.stop();
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-
+                Toast.makeText(getContext(),"focus gain",Toast.LENGTH_LONG);
                 media.start();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-
                 releaseMediaPlayer();
+                Toast.makeText(getContext(),"focus lost",Toast.LENGTH_LONG);
             }
 
 
@@ -79,6 +80,7 @@ public class PhrasesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word = arrayPhrases.get(position);
+
                 releaseMediaPlayer();
                 media = MediaPlayer.create(getActivity(),word.getAudioResourceId());
                 media.start();
